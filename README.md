@@ -1,2 +1,2 @@
-# jare
+# JARE
 Just Another Rules Engine
