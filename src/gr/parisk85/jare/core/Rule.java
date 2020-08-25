@@ -1,5 +1,5 @@
 package gr.parisk85.jare.core;
 
 public interface Rule<T> {
-    void run(T feed);
+    void run(final T feed);
 }

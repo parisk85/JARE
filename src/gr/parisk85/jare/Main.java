@@ -14,7 +14,7 @@ public class Main {
         //Rule rule1 = StandardRule.given(Hero.class).when(h -> h.getStrength() < 10).thenThrow(IllegalArgumentException::new).build();
 
         Rule rule = RuleBuilder.given(Hero.class).when(h -> h.getDexterity() < 10).then(h -> h.setDexterity(20));
-        Rule rule1 = RuleBuilder.given(Hero.class).when(h -> h.getDexterity() < 10).thenThrow(ArithmeticException::new);
+        Rule rule1 = RuleBuilder.given(Hero.class).when(h -> h.getDexterity() < 25).thenThrow(ArithmeticException::new);
 
         Engine.run(hero, rule, rule1);
 
