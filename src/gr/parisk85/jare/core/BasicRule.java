@@ -6,13 +6,11 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class BasicRule<T> implements Rule<T> {
-    private final Class<T> given;
     private final Predicate<T> when;
     private final Consumer<T> then;
     private final Supplier<? extends Exception> thenThrow;
 
     BasicRule(RuleBuilder<T> builder) {
-        this.given = builder.given;
         this.when = builder.when;
         this.then = builder.then;
         this.thenThrow = builder.thenThrow;

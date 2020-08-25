@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class RuleBuilder<T> {
-    Class<T> given;
+    final Class<T> given;
     Predicate<T> when;
     Consumer<T> then;
     Supplier<? extends Exception> thenThrow;
