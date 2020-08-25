@@ -11,7 +11,7 @@ public class RuleBuilder<T> {
     Supplier<? extends Exception> thenThrow;
 
     public static <T> RuleBuilder<T> given(Class<T> given) {
-        return new RuleBuilder(given);
+        return new RuleBuilder<>(given);
     }
 
     public RuleBuilder(Class<T> given) {
