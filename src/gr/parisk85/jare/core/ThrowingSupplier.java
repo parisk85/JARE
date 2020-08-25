@@ -2,7 +2,7 @@ package gr.parisk85.jare.core;
 
 import java.util.function.Supplier;
 
-interface ThrowingSupplier<E extends Exception> {
+interface ThrowingSupplier {
     static <E extends Exception> void get(Supplier<E> t) {
         try {
             throw t.get();

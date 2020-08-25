@@ -10,12 +10,12 @@ public class RuleBuilder<T> {
     Consumer<T> then;
     Supplier<Exception> thenThrow;
 
-    public static <T> RuleBuilder<T> given(final Class<T> given) {
-        return new RuleBuilder<>(given);
+    private RuleBuilder(final Class<T> given) {
+        this.given = given;
     }
 
-    public RuleBuilder(final Class<T> given) {
-        this.given = given;
+    public static <T> RuleBuilder<T> given(final Class<T> given) {
+        return new RuleBuilder<>(given);
     }
 
     public RuleBuilder<T> when(final Predicate<T> when) {
