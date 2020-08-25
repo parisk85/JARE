@@ -19,7 +19,7 @@ public class BasicRule<T> implements Rule<T> {
     public void run(T feed) {
         if (when.test(feed)) {
             Optional.ofNullable(then).ifPresent(t -> t.accept(feed));
-            Optional.ofNullable(thenThrow).ifPresent(ThrowingSupplier::throwingConsumerWrapper);
+            Optional.ofNullable(thenThrow).ifPresent(ThrowingSupplier::throwingSupplierWrapper);
         }
     }
 }
