@@ -1,18 +1,13 @@
 package gr.parisk85.jare.core;
 
-import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-@FunctionalInterface
-interface ThrowingConsumer<T, E extends Exception> {
-    void accept(T t) throws E;
-
-    static <T> Consumer<T> throwingConsumerWrapper(final ThrowingConsumer<T, Exception> throwingConsumer) {
-        return i -> {
-            try {
-                throwingConsumer.accept(i);
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
-        };
+interface ThrowingSupplier<E extends Exception> {
+    static <E extends Exception> void get(Supplier<E> t) {
+        try {
+            throw t.get();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
