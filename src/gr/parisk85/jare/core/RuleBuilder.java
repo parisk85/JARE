@@ -2,12 +2,13 @@ package gr.parisk85.jare.core;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class RuleBuilder<T> {
     final Class<T> given;
     Predicate<T> when;
     Consumer<T> then;
-    ThrowingSupplier<Exception> thenThrow;
+    Supplier<Exception> thenThrow;
 
     public static <T> RuleBuilder<T> given(final Class<T> given) {
         return new RuleBuilder<>(given);
@@ -27,7 +28,7 @@ public class RuleBuilder<T> {
         return new BasicRule<>(this);
     }
 
-    public Rule<T> thenThrow(final ThrowingSupplier<Exception> thenThrow) {
+    public Rule<T> thenThrow(final Supplier<Exception> thenThrow) {
         this.thenThrow = thenThrow;
         return new BasicRule<>(this);
     }
