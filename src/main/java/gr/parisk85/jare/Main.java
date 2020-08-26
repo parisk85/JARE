@@ -8,8 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
         Hero dwarfHero = new Hero(5, 9, "Dwarf");
-        Hero humanHero = new Hero(2, 9, "Human");
+        Hero humanHero = new Hero(12, 9, "Human");
 
+        RuleBuilder.given(Hero.class).when(h -> h.getStrength() == 0).then(t -> t.setStrength(3));
         //Rule rule = StandardRule.given(Hero.class).when(h -> h.getStrength() < 6).then(s -> s.setStrength(7));
 
         //Rule rule1 = StandardRule.given(Hero.class).when(h -> h.getStrength() < 10).thenThrow(IllegalArgumentException::new).build();

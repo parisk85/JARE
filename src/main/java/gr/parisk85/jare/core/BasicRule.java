@@ -18,9 +18,12 @@ public class BasicRule<T> implements Rule<T> {
 
     @Override
     public void run(T feed) {
-        if (when.test(feed)) {
-            Optional.ofNullable(then).ifPresent(t -> t.accept(feed));
-            Optional.ofNullable(thenThrow).ifPresent(ThrowingSupplier::get);
-        }
+        Optional.ofNullable(feed)
+                .filter(when)
+                .ifPresent(this::acceptOrThrow);
+    }
+
+    private void acceptOrThrow(T feed) {
+        Optional.ofNullable(then).ifPresentOrElse(it -> it.accept(feed), () -> ThrowingSupplier.get(thenThrow));
     }
 }
