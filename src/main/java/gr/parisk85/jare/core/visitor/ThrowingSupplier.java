@@ -1,4 +1,4 @@
-package gr.parisk85.jare.core;
+package gr.parisk85.jare.core.visitor;
 
 import java.util.function.Supplier;
 

@@ -7,8 +7,8 @@ import gr.parisk85.jare.core.RuleBuilder;
 public class Main {
 
     public static void main(String[] args) {
-        Hero dwarfHero = new Hero(5, 9, "Dwarf");
-        Hero humanHero = new Hero(12, 9, "Human");
+        Hero dwarfHero = new Hero(14, 9, "Dwarf");
+        Hero humanHero = new Hero(5, 9, "Human");
 
         RuleBuilder.given(Hero.class).when(h -> h.getStrength() == 0).then(t -> t.setStrength(3));
         //Rule rule = StandardRule.given(Hero.class).when(h -> h.getStrength() < 6).then(s -> s.setStrength(7));
@@ -18,11 +18,13 @@ public class Main {
         /*Rule rule = RuleBuilder.given(Hero.class).when(h -> h.getDexterity() < 10).then(h -> h.setDexterity(20));
         Rule rule1 = RuleBuilder.given(Hero.class).when(h -> h.getDexterity() < 25).thenThrow(ArithmeticException::new);*/
 
-        Rule dwarfRule = RuleBuilder.given(Hero.class).when(h -> h.getRace().equals("Dwarf")).then(h -> h.setStrength(h.getStrength() + 2));
-        Rule abilityRule = RuleBuilder.given(Hero.class).when(h -> h.getStrength() < 3 || h.getStrength() > 18).thenThrow(IllegalArgumentException::new);
+        Rule<Hero> dwarfRule = RuleBuilder.given(Hero.class).when(h -> h.getRace().equals("Dwarf")).then(h -> h.setStrength(h.getStrength() + 2));
+        Rule<Hero> abilityRule = RuleBuilder.given(Hero.class).when(h -> h.getStrength() < 3 || h.getStrength() > 18).thenThrow(IllegalArgumentException::new);
 
-        Engine.run(dwarfHero, dwarfRule, abilityRule);
-        Engine.run(humanHero, dwarfRule, abilityRule);
+        Rule<Hero> testRule = RuleBuilder.given(Hero.class).when(h -> h.getStrength() == 16).then(h -> System.out.println("HOORAY"));
+
+        Engine.run(dwarfHero, dwarfRule, abilityRule, testRule);
+        Engine.run(humanHero, dwarfRule, abilityRule, testRule);
         //Engine.run(hero, rule, rule1);
 
         System.out.println(dwarfHero);

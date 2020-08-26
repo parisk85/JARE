@@ -1,5 +1,11 @@
 package gr.parisk85.jare.core;
 
+import gr.parisk85.jare.core.visitor.RuleFinalizer;
+import gr.parisk85.jare.core.visitor.ThenRuleFinalizer;
+import gr.parisk85.jare.core.visitor.ThenThrowRuleFinalizer;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -7,8 +13,7 @@ import java.util.function.Supplier;
 public class RuleBuilder<T> {
     final Class<T> given;
     Predicate<T> when;
-    Consumer<T> then;
-    Supplier<Exception> thenThrow;
+    List<RuleFinalizer<T>> finalizers = new ArrayList<>();
 
     private RuleBuilder(final Class<T> given) {
         this.given = given;
@@ -24,12 +29,12 @@ public class RuleBuilder<T> {
     }
 
     public Rule<T> then(final Consumer<T> then) {
-        this.then = then;
+        this.finalizers.add(ThenRuleFinalizer.of(then));
         return new BasicRule<>(this);
     }
 
     public Rule<T> thenThrow(final Supplier<Exception> thenThrow) {
-        this.thenThrow = thenThrow;
+        this.finalizers.add(new ThenThrowRuleFinalizer(thenThrow));
         return new BasicRule<>(this);
     }
 }

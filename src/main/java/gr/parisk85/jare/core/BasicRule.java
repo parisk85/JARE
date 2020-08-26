@@ -1,19 +1,20 @@
 package gr.parisk85.jare.core;
 
+import gr.parisk85.jare.core.visitor.FinalizeRuleFinalizerVisitor;
+import gr.parisk85.jare.core.visitor.RuleFinalizer;
+
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 public class BasicRule<T> implements Rule<T> {
     private final Predicate<T> when;
-    private final Consumer<T> then;
-    private final Supplier<Exception> thenThrow;
+    private final List<RuleFinalizer<T>> finalizers;
 
     BasicRule(RuleBuilder<T> builder) {
         this.when = builder.when;
-        this.then = builder.then;
-        this.thenThrow = builder.thenThrow;
+        this.finalizers = builder.finalizers;
     }
 
     @Override
@@ -24,6 +25,9 @@ public class BasicRule<T> implements Rule<T> {
     }
 
     private void acceptOrThrow(T feed) {
-        Optional.ofNullable(then).ifPresentOrElse(it -> it.accept(feed), () -> ThrowingSupplier.get(thenThrow));
+        finalizers.stream()
+                .filter(Objects::nonNull)
+                .findFirst()
+                .ifPresent(f -> f.accept(FinalizeRuleFinalizerVisitor.feed(feed)));
     }
 }
