@@ -1,6 +1,6 @@
 package gr.parisk85.jare.core;
 
-import gr.parisk85.jare.core.visitor.FinalizeRuleFinalizerVisitor;
+import gr.parisk85.jare.core.visitor.FinalizeVisitor;
 import gr.parisk85.jare.core.visitor.RuleFinalizer;
 
 import java.util.List;
@@ -28,6 +28,6 @@ public class BasicRule<T> implements Rule<T> {
         finalizers.stream()
                 .filter(Objects::nonNull)
                 .findFirst()
-                .ifPresent(f -> f.accept(FinalizeRuleFinalizerVisitor.feed(feed)));
+                .ifPresent(f -> f.accept(FinalizeVisitor.feed(feed)));
     }
 }

@@ -1,13 +1,13 @@
 package gr.parisk85.jare.core.visitor;
 
-public class FinalizeRuleFinalizerVisitor<T> implements RuleFinalizerVisitor<T> {
+public class FinalizeVisitor<T> implements RuleVisitor<T> {
     private final T feed;
 
-    public static <T> FinalizeRuleFinalizerVisitor<T> feed(final T feed) {
-        return new FinalizeRuleFinalizerVisitor<>(feed);
+    public static <T> FinalizeVisitor<T> feed(final T feed) {
+        return new FinalizeVisitor<>(feed);
     }
 
-    private FinalizeRuleFinalizerVisitor(final T feed) {
+    private FinalizeVisitor(final T feed) {
         this.feed = feed;
     }
 

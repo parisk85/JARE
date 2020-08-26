@@ -18,7 +18,7 @@ public class ThenThrowRuleFinalizer<T> implements RuleFinalizer<T> {
     }
 
     @Override
-    public void accept(final RuleFinalizerVisitor<T> ruleFinalizerVisitor) {
-        ruleFinalizerVisitor.visit(this);
+    public void accept(final RuleVisitor<T> ruleVisitor) {
+        ruleVisitor.visit(this);
     }
 }
