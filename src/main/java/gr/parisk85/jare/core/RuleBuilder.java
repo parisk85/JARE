@@ -10,16 +10,23 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-public class RuleBuilder<T> {
-    final Class<T> given;
+public final class RuleBuilder<T> {
+    Class<T> given;
+    final List<RuleFinalizer<T>> finalizers = new ArrayList<>();
     Predicate<T> when;
-    List<RuleFinalizer<T>> finalizers = new ArrayList<>();
+
+    public RuleBuilder() {
+    }
 
     private RuleBuilder(final Class<T> given) {
         this.given = given;
     }
 
-    public static <T> RuleBuilder<T> given(final Class<T> given) {
+    /*public static <T> RuleBuilder<T> given(final Class<T> given) {
+        return new RuleBuilder<>(given);
+    }*/
+
+    public RuleBuilder<T> given(final Class<T> given) {
         return new RuleBuilder<>(given);
     }
 

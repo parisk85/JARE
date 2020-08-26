@@ -1,16 +1,14 @@
 package gr.parisk85.jare;
 
-import gr.parisk85.jare.core.Engine;
-import gr.parisk85.jare.core.Rule;
-import gr.parisk85.jare.core.RuleBuilder;
+import gr.parisk85.jare.core.JAREngine;
 
 public class Main {
 
     public static void main(String[] args) {
         Hero dwarfHero = new Hero(14, 9, "Dwarf");
-        Hero humanHero = new Hero(5, 9, "Human");
+        Hero humanHero = new Hero(0, 9, "Human");
 
-        RuleBuilder.given(Hero.class).when(h -> h.getStrength() == 0).then(t -> t.setStrength(3));
+        //RuleBuilder.given(Hero.class).when(h -> h.getStrength() == 0).then(t -> t.setStrength(3));
         //Rule rule = StandardRule.given(Hero.class).when(h -> h.getStrength() < 6).then(s -> s.setStrength(7));
 
         //Rule rule1 = StandardRule.given(Hero.class).when(h -> h.getStrength() < 10).thenThrow(IllegalArgumentException::new).build();
@@ -18,14 +16,20 @@ public class Main {
         /*Rule rule = RuleBuilder.given(Hero.class).when(h -> h.getDexterity() < 10).then(h -> h.setDexterity(20));
         Rule rule1 = RuleBuilder.given(Hero.class).when(h -> h.getDexterity() < 25).thenThrow(ArithmeticException::new);*/
 
-        Rule<Hero> dwarfRule = RuleBuilder.given(Hero.class).when(h -> h.getRace().equals("Dwarf")).then(h -> h.setStrength(h.getStrength() + 2));
-        Rule<Hero> abilityRule = RuleBuilder.given(Hero.class).when(h -> h.getStrength() < 3 || h.getStrength() > 18).thenThrow(IllegalArgumentException::new);
+        /*Rule<Hero> dwarfRule = RuleBuilder.given(Hero.class).when(h -> h.getRace().equals("Dwarf")).then(h -> h.setStrength(h.getStrength() + 2));
+        Rule<Hero> abilityRule = RuleBuilder.given(Hero.class).when(h -> h.getStrength() < 3 || h.getStrength() > 18).thenThrow(IllegalArgumentException::new);*/
 
-        Rule<Hero> testRule = RuleBuilder.given(Hero.class).when(h -> h.getStrength() == 16).then(h -> System.out.println("HOORAY"));
+        //JAREngine.feed().addRule(r -> r.given).addRule().run();
 
-        Engine.run(dwarfHero, dwarfRule, abilityRule, testRule);
-        Engine.run(humanHero, dwarfRule, abilityRule, testRule);
+        //Rule<Hero> testRule = RuleBuilder.given(Hero.class).when(h -> h.getStrength() == 16).then(h -> System.out.println("HOORAY"));
+
+        /*JAREngine.run(dwarfHero, dwarfRule, abilityRule, testRule);
+        JAREngine.run(humanHero, dwarfRule, abilityRule, testRule);*/
         //Engine.run(hero, rule, rule1);
+
+        JAREngine.feed(dwarfHero, humanHero)
+                .addRule(r -> r.given(Hero.class).when(h -> h.getStrength() == 0).then(h -> h.setStrength(20)))
+                .fire();
 
         System.out.println(dwarfHero);
         System.out.println(humanHero);
