@@ -34,7 +34,7 @@ public class RuleBuilder<T> {
     }
 
     public Rule<T> thenThrow(final Supplier<Exception> thenThrow) {
-        this.finalizers.add(new ThenThrowRuleFinalizer(thenThrow));
+        this.finalizers.add(ThenThrowRuleFinalizer.of(thenThrow));
         return new BasicRule<>(this);
     }
 }
