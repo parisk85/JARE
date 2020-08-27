@@ -52,11 +52,11 @@ class BasicRuleTest extends Specification {
         noExceptionThrown()
     }
 
-    def "expects to run then without when"() {
+    def "expects to run then clause without when clause"() {
         given:
         def actual = new StringBuilder("This")
 
-        def tester = RuleBuilder.given(StringBuilder).then { " is a test." }
+        def tester = RuleBuilder.given(StringBuilder).then {it -> it.append(" is a test.") }
 
         when:
         tester.run(actual)
@@ -65,4 +65,8 @@ class BasicRuleTest extends Specification {
         "This" != actual.toString()
         "This is a test." == actual.toString()
     }
+
+    //more tests
+    //expect to throw without when
+    //don't crush on null objects
 }

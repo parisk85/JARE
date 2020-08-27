@@ -20,7 +20,7 @@ public final class BasicRule<T> implements Rule<T> {
     @Override
     public void run(final T feed) {
         Optional.ofNullable(feed)
-                .filter(when)
+                .filter(Optional.ofNullable(when).orElse(f -> true))
                 .ifPresent(this::accept);
     }
 
