@@ -56,7 +56,7 @@ class BasicRuleTest extends Specification {
         given:
         def actual = new StringBuilder("This")
 
-        def tester = RuleBuilder.given(StringBuilder).then {it -> it.append(" is a test.") }
+        def tester = RuleBuilder.given(StringBuilder).then { it -> it.append(" is a test.") }
 
         when:
         tester.run(actual)
