@@ -10,7 +10,7 @@ class BasicRuleTest extends Specification {
         given:
         def actual = new StringBuilder("This is");
 
-        def tester = RuleBuilder.given(StringBuilder.class)
+        def tester = RuleBuilder.given(StringBuilder)
                 .when { it -> condition }
                 .then { it -> it << " a test." }
 
@@ -26,7 +26,7 @@ class BasicRuleTest extends Specification {
         false     | "This is"
     }
 
-    def "expect to throw when condition is true"() {
+    def "expects to throw when condition is true"() {
         given:
         def tester = RuleBuilder.given(Boolean.class)
                 .when { it }
@@ -39,7 +39,7 @@ class BasicRuleTest extends Specification {
         thrown(RuntimeException)
     }
 
-    def "expect not to throw when condition is false"() {
+    def "expects not to throw when condition is false"() {
         given:
         def tester = RuleBuilder.given(Boolean.class)
                 .when { it }
@@ -50,5 +50,19 @@ class BasicRuleTest extends Specification {
 
         then:
         noExceptionThrown()
+    }
+
+    def "expects to run then without when"() {
+        given:
+        def actual = new StringBuilder("This")
+
+        def tester = RuleBuilder.given(StringBuilder).then { " is a test." }
+
+        when:
+        tester.run(actual)
+
+        then:
+        "This" != actual.toString()
+        "This is a test." == actual.toString()
     }
 }

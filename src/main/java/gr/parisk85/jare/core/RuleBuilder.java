@@ -12,8 +12,8 @@ import java.util.function.Supplier;
 
 public final class RuleBuilder<T> {
     Class<T> given;
-    final List<RuleFinalizer<T>> finalizers = new ArrayList<>();
     Predicate<T> when;
+    final List<RuleFinalizer<T>> finalizers = new ArrayList<>();
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     RuleBuilder(final Class given) {
