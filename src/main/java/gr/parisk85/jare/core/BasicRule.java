@@ -28,10 +28,10 @@ public final class BasicRule<T> implements Rule<T> {
     public void run(final T feed) {
         Optional.ofNullable(feed)
                 .filter(when)
-                .ifPresent(this::acceptOrThrow);
+                .ifPresent(this::accept);
     }
 
-    private void acceptOrThrow(final T feed) {
+    private void accept(final T feed) {
         finalizers.stream()
                 .filter(Objects::nonNull)
                 .findFirst()
