@@ -19,13 +19,9 @@ public final class BasicRule<T> implements Rule<T> {
         this.finalizers = builder.finalizers;
     }
 
-    public static <T> RuleBuilder<T> create() {
-        return new RuleBuilder<>();
-    }
-
     @Override
     public Class<T> type() {
-        return given;
+        return this.given;
     }
 
     @Override
