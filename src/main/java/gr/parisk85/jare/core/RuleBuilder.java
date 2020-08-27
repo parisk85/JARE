@@ -15,9 +15,6 @@ public final class RuleBuilder<T> {
     final List<RuleFinalizer<T>> finalizers = new ArrayList<>();
     Predicate<T> when;
 
-    RuleBuilder() {
-    }
-
     @SuppressWarnings({"rawtypes", "unchecked"})
     RuleBuilder(final Class given) {
         this.given = given;
