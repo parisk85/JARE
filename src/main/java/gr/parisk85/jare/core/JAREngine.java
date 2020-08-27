@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.function.Function;
 
 public final class JAREngine<T> {
-
+    private final Class<?> type;
     private final List<T> feed;
     private final List<Rule<T>> rules;
 
     private JAREngine() {
         feed = new ArrayList<>();
         rules = new ArrayList<>();
+        type = feed.getClass().getGenericSuperclass().getClass();
     }
 
     private JAREngine(final T input) {
@@ -44,14 +45,11 @@ public final class JAREngine<T> {
     }
 
     public JAREngine<T> addRule(final Function<RuleBuilder<T>, Rule<T>> function) {
-        rules.add(function.apply(new RuleBuilder<>()));
+        rules.add(function.apply(new RuleBuilder<>(type)));
         return this;
     }
 
     public final void fire() {
-        rules.forEach(r -> feed.stream()
-                .filter(f -> f.getClass().equals(r.type()))
-                .forEach(r::run)
-        );
+        rules.forEach(r -> feed.forEach(r::run));
     }
 }

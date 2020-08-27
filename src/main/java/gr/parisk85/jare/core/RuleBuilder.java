@@ -15,24 +15,24 @@ public final class RuleBuilder<T> {
     final List<RuleFinalizer<T>> finalizers = new ArrayList<>();
     Predicate<T> when;
 
-    public RuleBuilder() {
+    RuleBuilder() {
     }
 
-    private RuleBuilder(final Class<T> given) {
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    RuleBuilder(final Class given) {
         this.given = given;
     }
 
-    /*public static <T> RuleBuilder<T> given(final Class<T> given) {
-        return new RuleBuilder<>(given);
-    }*/
+    private RuleBuilder(final Predicate<T> predicate) {
+        this.when = predicate;
+    }
 
-    public RuleBuilder<T> given(final Class<T> given) {
+    public static <T> RuleBuilder<T> given(final Class<T> given) {
         return new RuleBuilder<>(given);
     }
 
     public RuleBuilder<T> when(final Predicate<T> when) {
-        this.when = when;
-        return this;
+        return new RuleBuilder<>(when);
     }
 
     public Rule<T> then(final Consumer<T> then) {

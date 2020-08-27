@@ -1,6 +1,7 @@
 package gr.parisk85.jare;
 
 import gr.parisk85.jare.core.JAREngine;
+import gr.parisk85.jare.core.RuleBuilder;
 
 public class Main {
 
@@ -28,8 +29,17 @@ public class Main {
         //Engine.run(hero, rule, rule1);
 
         JAREngine.feed(dwarfHero, humanHero)
-                .addRule(r -> r.given(Hero.class).when(h -> h.getStrength() == 0).then(h -> h.setStrength(20)))
+                //.addRule(r -> r.given(Hero.class).when(h -> h.getStrength() == 0).then(h -> h.setStrength(20)))
+                .addRule(r -> r.when(h -> h.getStrength() == 0).then(h -> h.setDexterity(199)))
+                .addRule(r -> r.when(s -> s.getStrength() == 3).thenThrow(IllegalAccessException::new))
                 .fire();
+
+        JAREngine.feed(3)
+                .addRule(r -> r.when(i -> i == 3).then(i -> System.out.println(i+5)))
+                .fire();
+
+        RuleBuilder.given(Hero.class).when(h -> h.getStrength() == 9).then(h -> h.setDexterity(1)).run(new Hero(4,4, ""));
+        RuleBuilder.given(String.class).when(s->s.equals("")).thenThrow(RuntimeException::new);
 
         System.out.println(dwarfHero);
         System.out.println(humanHero);
