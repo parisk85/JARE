@@ -9,19 +9,12 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 public final class BasicRule<T> implements Rule<T> {
-    private final Class<T> given;
     private final Predicate<T> when;
     private final List<RuleFinalizer<T>> finalizers;
 
     BasicRule(final RuleBuilder<T> builder) {
-        this.given = builder.given;
         this.when = builder.when;
         this.finalizers = builder.finalizers;
-    }
-
-    @Override
-    public Class<T> type() {
-        return this.given;
     }
 
     @Override
