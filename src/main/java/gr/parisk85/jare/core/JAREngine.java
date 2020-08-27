@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-public final class JAREngine<T> {
+public final class JAREngine<T> implements RuleEngineIgniter<T> {
     private final Class<?> type;
     private final List<T> feed;
     private final List<Rule<T>> rules;
@@ -44,12 +44,14 @@ public final class JAREngine<T> {
         return new JAREngine<>(input);
     }
 
+    @Override
     public JAREngine<T> addRule(final Function<RuleBuilder<T>, Rule<T>> function) {
         rules.add(function.apply(new RuleBuilder<>(type)));
         return this;
     }
 
-    public final void fire() {
+    @Override
+    public void fire() {
         rules.forEach(r -> feed.forEach(r::run));
     }
 }
