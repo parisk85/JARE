@@ -1,10 +1,11 @@
 package gr.parisk85.jare.core.visitor;
 
 /**
+ * Interface for visitor pattern.
  *
- * @param <T>
+ * @author parisk85
  */
-public interface RuleVisitor<T> {
+interface RuleVisitor<T> {
     void visit(ThenRuleFinalizer<T> visitable);
     void visit(ThenThrowRuleFinalizer<T> visitable);
 }

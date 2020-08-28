@@ -1,5 +1,10 @@
 package gr.parisk85.jare.core.visitor;
 
+/**
+ * Visitor {@link RuleVisitor} implementation class
+ *
+ * @author parisk85
+ */
 public class FinalizeVisitor<T> implements RuleVisitor<T> {
     private final T feed;
 
