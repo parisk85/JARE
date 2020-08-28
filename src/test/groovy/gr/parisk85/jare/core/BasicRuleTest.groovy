@@ -1,15 +1,20 @@
 package gr.parisk85.jare.core
 
+import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class BasicRuleTest extends Specification {
 
+    @Shared
+    StringBuilder actual
+
+    void setup() {
+        actual = new StringBuilder("This");
+    }
+
     @Unroll
     def "expects to run then clause only when condition is true"() {
-        given:
-        def actual = new StringBuilder("This");
-
         when:
         RuleBuilder.given(StringBuilder)
                 .when { it -> condition }
@@ -47,9 +52,6 @@ class BasicRuleTest extends Specification {
     }
 
     def "expects to run then clause without when clause"() {
-        given:
-        def actual = new StringBuilder("This")
-
         when:
         RuleBuilder.given(StringBuilder)
                 .then { it -> it << " is a test." }
@@ -71,9 +73,6 @@ class BasicRuleTest extends Specification {
     }
 
     def "expects to run successfully on empty feed"() {
-        given:
-        def actual = new StringBuilder("This")
-
         when:
         RuleBuilder.given(StringBuilder)
                 .when { it -> true }
@@ -103,9 +102,6 @@ class BasicRuleTest extends Specification {
     }
 
     def "expects to run successfully on null feed"() {
-        given:
-        def actual = new StringBuilder("This")
-
         when:
         RuleBuilder.given(StringBuilder)
                 .when { it -> true }
