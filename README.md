@@ -10,7 +10,7 @@ JARE is just another rules engine! It is minimalistic library to provide a rules
 
 #### Examples
 
-##### 1. Using simple rules
+##### 1. Using simple rules:
 
 Provide the class to the given method and feed the rule when you run it:
 
@@ -20,7 +20,7 @@ RuleBuilder.given(String.class)
         .run("JARE"); 
 ```
 
-Using a when clause:
+With a when clause:
 
 ```
 RuleBuilder.given(String.class)
