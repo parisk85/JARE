@@ -8,14 +8,12 @@ class BasicRuleTest extends Specification {
     @Unroll
     def "expects to run then clause only when condition is true"() {
         given:
-        def actual = new StringBuilder("This is");
-
-        def tester = RuleBuilder.given(StringBuilder)
-                .when { it -> condition }
-                .then { it -> it << " a test." }
+        def actual = new StringBuilder("This");
 
         when:
-        tester.run(actual)
+        RuleBuilder.given(StringBuilder)
+                .when { it -> condition }
+                .then { it -> it << " is a test." }.run(actual)
 
         then:
         expected == actual.toString()
@@ -23,30 +21,26 @@ class BasicRuleTest extends Specification {
         where:
         condition | expected
         true      | "This is a test."
-        false     | "This is"
+        false     | "This"
     }
 
     def "expects to throw when condition is true"() {
-        given:
-        def tester = RuleBuilder.given(Boolean.class)
+        when:
+        RuleBuilder.given(Boolean.class)
                 .when { it }
                 .thenThrow { RuntimeException }
-
-        when:
-        tester.run(true)
+                .run(true)
 
         then:
         thrown(RuntimeException)
     }
 
     def "expects not to throw when condition is false"() {
-        given:
-        def tester = RuleBuilder.given(Boolean.class)
+        when:
+        RuleBuilder.given(Boolean.class)
                 .when { it }
                 .thenThrow { RuntimeException }
-
-        when:
-        tester.run(false)
+                .run(false)
 
         then:
         noExceptionThrown()
@@ -56,17 +50,87 @@ class BasicRuleTest extends Specification {
         given:
         def actual = new StringBuilder("This")
 
-        def tester = RuleBuilder.given(StringBuilder).then { it -> it.append(" is a test.") }
-
         when:
-        tester.run(actual)
+        RuleBuilder.given(StringBuilder)
+                .then { it -> it << " is a test." }
+                .run(actual)
 
         then:
         "This" != actual.toString()
         "This is a test." == actual.toString()
     }
 
-    //more tests
-    //expect to throw without when
-    //don't crush on null objects
+    def "expects to run thenThrow without clause"() {
+        when:
+        RuleBuilder.given(String)
+                .thenThrow { RuntimeException }
+                .run("")
+
+        then:
+        thrown(RuntimeException)
+    }
+
+    def "expects to run successfully on empty feed"() {
+        given:
+        def actual = new StringBuilder("This")
+
+        when:
+        RuleBuilder.given(StringBuilder)
+                .when { it -> true }
+                .then { it -> it << " is a test." }
+                .run()
+
+        then:
+        "This" == actual.toString()
+        noExceptionThrown()
+    }
+
+    @Unroll
+    def "expects not to throw exception on empty feed"() {
+        when:
+        RuleBuilder.given(StringBuilder)
+                .when { it -> condition }
+                .thenThrow { RuntimeException }
+                .run()
+
+        then:
+        noExceptionThrown()
+
+        where:
+        condition | _
+        true      | _
+        false     | _
+    }
+
+    def "expects to run successfully on null feed"() {
+        given:
+        def actual = new StringBuilder("This")
+
+        when:
+        RuleBuilder.given(StringBuilder)
+                .when { it -> true }
+                .then { it -> it << " is a test." }
+                .run(null)
+
+        then:
+        "This" == actual.toString()
+        noExceptionThrown()
+    }
+
+    @Unroll
+    def "expects not to throw exception on null feed"() {
+        when:
+        RuleBuilder.given(StringBuilder)
+                .when { it -> condition }
+                .thenThrow { RuntimeException }
+                .run(null)
+
+        then:
+        noExceptionThrown()
+
+        where:
+        condition | _
+        true      | _
+        false     | _
+    }
 }

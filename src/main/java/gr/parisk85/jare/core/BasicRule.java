@@ -20,8 +20,14 @@ public final class BasicRule<T> implements Rule<T> {
     @Override
     public void run(final T feed) {
         Optional.ofNullable(feed)
-                .filter(Optional.ofNullable(when).orElse(f -> true))
+                .filter(this::verifyWhen)
                 .ifPresent(this::accept);
+    }
+
+    private boolean verifyWhen(final T feed) {
+        return Optional.ofNullable(when)
+                .orElse(f -> true)
+                .test(feed);
     }
 
     private void accept(final T feed) {
