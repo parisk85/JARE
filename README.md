@@ -14,7 +14,7 @@ JARE is just another rules engine! It is minimalistic library to provide a rules
 
 Provide the class to the given method and feed the rule when you run it:
 
-```
+```java
 RuleBuilder.given(String.class)
         .then(s -> System.out.println("Hello " + s))
         .run("JARE"); 
@@ -22,7 +22,7 @@ RuleBuilder.given(String.class)
 
 With a when clause:
 
-```
+```java
 RuleBuilder.given(String.class)
     .when(s -> "JARE".equals(s))
     .then(s -> System.out.println("Hello " + s))
@@ -31,7 +31,7 @@ RuleBuilder.given(String.class)
 
 Another example:
 
-```
+```java
 StringBuilder test = new StringBuilder();
 
 RuleBuilder.given(StringBuilder.class)
@@ -44,7 +44,7 @@ System.out.println(test);
 
 Let's throw an exception:
 
-```
+```java
 RuleBuilder.given(Boolean.class)
     .when(Boolean::booleanValue)
     .thenThrow(RuntimeException::new)
@@ -55,7 +55,7 @@ RuleBuilder.given(Boolean.class)
 
 You can chain multiple rules and fire the engine:
 
-```
+```java
 JAREngine.feed("JARE")
     .addRule(r -> r.when(String::isEmpty).then(s -> System.out.println("Oh no!")))
     .addRule(r -> r.when(s -> !s.isEmpty()).then(s -> System.out.println("Hello " + s)))
@@ -64,7 +64,7 @@ JAREngine.feed("JARE")
 
 You can also feed the engine with multiple inputs using a List or variable arguments:
 
-```
+```java
 JAREngine.feed("JARE", "", "me")
     .addRule(r -> r.when(String::isEmpty).then(s -> System.out.println("Oh no!")))
     .addRule(r -> r.when(s -> !s.isEmpty()).then(s -> System.out.println("Hello " + s)))
