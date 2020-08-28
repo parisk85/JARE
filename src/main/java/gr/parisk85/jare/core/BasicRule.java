@@ -28,8 +28,8 @@ public final class BasicRule<T> implements Rule<T> {
     /**
      * Evaluates the rule
      *
-     * Evaluates the presence and truth of when predicate. <br/>
-     * Fires the finalizers <br/>
+     * Evaluates the presence and truth of when predicate.
+     * Fires the finalizers.
      *
      * @param feed object provided as input to feed the rule
      */
