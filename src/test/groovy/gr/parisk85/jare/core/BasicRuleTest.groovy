@@ -1,12 +1,11 @@
 package gr.parisk85.jare.core
 
-import spock.lang.Shared
+
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class BasicRuleTest extends Specification {
 
-    @Shared
     StringBuilder actual
 
     void setup() {
