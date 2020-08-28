@@ -1,7 +1,9 @@
 package gr.parisk85.jare.core.visitor;
 
 /**
- * Visitor {@link RuleVisitor} implementation class
+ * Visitor {@link RuleVisitor} implementation class.
+ *
+ * Used for polymorphic call in {@link gr.parisk85.jare.core.BasicRule#accept)}.
  *
  * @author parisk85
  */

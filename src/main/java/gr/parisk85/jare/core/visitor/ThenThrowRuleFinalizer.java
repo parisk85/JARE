@@ -3,7 +3,7 @@ package gr.parisk85.jare.core.visitor;
 import java.util.function.Supplier;
 
 /**
- * Visitable {@link FinalizeVisitor} implementation class
+ * Visitable {@link FinalizeVisitor} implementation class.
  *
  * @author parisk85
  */
