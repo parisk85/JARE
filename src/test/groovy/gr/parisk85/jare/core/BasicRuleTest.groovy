@@ -15,8 +15,8 @@ class BasicRuleTest extends Specification {
     def "expects to run then clause only when condition is true"() {
         when:
         RuleBuilder.given(StringBuilder)
-                .when { it -> condition }
-                .then { it -> it << " is a test." }.run(actual)
+                .when { condition }
+                .then { it << " is a test." }.run(actual)
 
         then:
         expected == actual.toString()
@@ -52,7 +52,7 @@ class BasicRuleTest extends Specification {
     def "expects to run then clause without when clause"() {
         when:
         RuleBuilder.given(StringBuilder)
-                .then { it -> it << " is a test." }
+                .then { it << " is a test." }
                 .run(actual)
 
         then:
@@ -73,8 +73,8 @@ class BasicRuleTest extends Specification {
     def "expects to run successfully on empty feed"() {
         when:
         RuleBuilder.given(StringBuilder)
-                .when { it -> true }
-                .then { it -> it << " is a test." }
+                .when { true }
+                .then { " is a test." }
                 .run()
 
         then:
@@ -86,7 +86,7 @@ class BasicRuleTest extends Specification {
     def "expects not to throw exception on empty feed"() {
         when:
         RuleBuilder.given(StringBuilder)
-                .when { it -> condition }
+                .when { condition }
                 .thenThrow { RuntimeException }
                 .run()
 
@@ -102,8 +102,8 @@ class BasicRuleTest extends Specification {
     def "expects to run successfully on null feed"() {
         when:
         RuleBuilder.given(StringBuilder)
-                .when { it -> true }
-                .then { it -> it << " is a test." }
+                .when { true }
+                .then { it << " is a test." }
                 .run(null)
 
         then:
@@ -115,7 +115,7 @@ class BasicRuleTest extends Specification {
     def "expects not to throw exception on null feed"() {
         when:
         RuleBuilder.given(StringBuilder)
-                .when { it -> condition }
+                .when { condition }
                 .thenThrow { RuntimeException }
                 .run(null)
 
