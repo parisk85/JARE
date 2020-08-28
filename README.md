@@ -1,10 +1,7 @@
-***
-
 ###JARE
 ######Just Another Rules Engine
-
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
-***
+
 
 #### What is JARE?
 
