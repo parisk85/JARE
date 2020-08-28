@@ -2,6 +2,11 @@ package gr.parisk85.jare.core.visitor;
 
 import java.util.function.Consumer;
 
+/**
+ * Visitable {@link FinalizeVisitor} implementation class.
+ *
+ * @author parisk85
+ */
 public class ThenRuleFinalizer<T> implements RuleFinalizer<T> {
     private final Consumer<T> consumer;
 

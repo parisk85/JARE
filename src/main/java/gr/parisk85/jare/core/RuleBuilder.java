@@ -10,21 +10,31 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+/**
+ * Builder class to help create {@link Rule} objects.
+ *
+ * @author parisk85
+ */
 public final class RuleBuilder<T> {
-    Class<T> given;
-    final List<RuleFinalizer<T>> finalizers = new ArrayList<>();
-    Predicate<T> when;
 
-    RuleBuilder() {
-    }
+    private Class<?> given;
+    private Predicate<T> when;
+    private final List<RuleFinalizer<T>> finalizers = new ArrayList<>();
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    RuleBuilder(final Class given) {
+    RuleBuilder(final Class<?> given) {
         this.given = given;
     }
 
     private RuleBuilder(final Predicate<T> predicate) {
         this.when = predicate;
+    }
+
+    Predicate<T> getWhen() {
+        return when;
+    }
+
+    List<RuleFinalizer<T>> getFinalizers() {
+        return finalizers;
     }
 
     public static <T> RuleBuilder<T> given(final Class<T> given) {
@@ -44,4 +54,5 @@ public final class RuleBuilder<T> {
         this.finalizers.add(ThenThrowRuleFinalizer.of(thenThrow));
         return new BasicRule<>(this);
     }
+
 }
