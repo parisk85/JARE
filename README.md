@@ -8,7 +8,7 @@
 
 #### What is JARE?
 
-JARE is just another rules engine! It is minimalistic library to provide a rules engine (JAREngine) to software clients. Cliens are able to run individual rules or multiple rules using JAREngine.
+JARE is just another rules engine! It is minimalistic library to provide a rules engine (JAREngine) to software clients. Clients are able to run individual rules or multiple rules using JAREngine.
 
 #### Examples
 
