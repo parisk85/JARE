@@ -11,9 +11,9 @@ class JAREngineTest extends Specification {
         when:
         JAREngine.feed(actual)
                 .addRule { rule -> rule.when { false }.thenThrow { RuntimeException } }
-                .addRule { rule -> rule.when { true }.then { it -> it.append(" is") } }
-                .addRule { rule -> rule.when { false }.then { it -> it.append(" not") } }
-                .addRule { rule -> rule.when { true }.then { it -> it.append(" a test.") } }
+                .addRule { rule -> rule.when { true }.then { it.append(" is") } }
+                .addRule { rule -> rule.when { false }.then { it.append(" not") } }
+                .addRule { rule -> rule.when { true }.then { it.append(" a test.") } }
                 .fire()
 
         then:
