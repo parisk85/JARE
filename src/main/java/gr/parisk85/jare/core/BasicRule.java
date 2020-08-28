@@ -8,15 +8,31 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+/**
+ * The basic rule implementation.
+ *
+ * Can be evaluated by itself or used with a {@link JAREngine}.
+ *
+ * @author parisk85
+ */
 public final class BasicRule<T> implements Rule<T> {
+
     private final Predicate<T> when;
     private final List<RuleFinalizer<T>> finalizers;
 
     BasicRule(final RuleBuilder<T> builder) {
-        this.when = builder.when;
-        this.finalizers = builder.finalizers;
+        this.when = builder.getWhen();
+        this.finalizers = builder.getFinalizers();
     }
 
+    /**
+     * Evaluates the rule
+     *
+     * Evaluates the presence and truth of when predicate. <br/>
+     * Fires the finalizers <br/>
+     *
+     * @param feed object provided as input to feed the rule
+     */
     @Override
     public void run(final T feed) {
         Optional.ofNullable(feed)
@@ -36,4 +52,5 @@ public final class BasicRule<T> implements Rule<T> {
                 .findFirst()
                 .ifPresent(f -> f.accept(FinalizeVisitor.feed(feed)));
     }
+
 }
