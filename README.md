@@ -1,9 +1,7 @@
 ***
 
-<div align="center">
-    <b><em>JARE</em></b><br>
-    Just Another Rules Engine&trade;
-</div>
+###JARE
+######Just Another Rules Engine
 
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 ***
