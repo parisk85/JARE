@@ -18,11 +18,11 @@ public class FinalizeVisitor<T> implements RuleVisitor<T> {
 
     @Override
     public void visit(final ThenRuleFinalizer<T> visitable) {
-        visitable.getConsumer().accept(feed);
+        visitable.getThen().accept(feed);
     }
 
     @Override
     public void visit(final ThenThrowRuleFinalizer<T> visitable) {
-        ThrowingSupplier.get(visitable.getThenThrow());
+        ThrowingSupplier.get(() -> visitable.getThenThrow().get());
     }
 }

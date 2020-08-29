@@ -8,18 +8,18 @@ import java.util.function.Consumer;
  * @author parisk85
  */
 public class ThenRuleFinalizer<T> implements RuleFinalizer<T> {
-    private final Consumer<T> consumer;
+    private final Consumer<T> then;
 
     public static <T> ThenRuleFinalizer<T> of(final Consumer<T> consumer) {
         return new ThenRuleFinalizer<>(consumer);
     }
 
-    private ThenRuleFinalizer(final Consumer<T> consumer) {
-        this.consumer = consumer;
+    private ThenRuleFinalizer(final Consumer<T> then) {
+        this.then = then;
     }
 
-    public Consumer<T> getConsumer() {
-        return consumer;
+    public Consumer<T> getThen() {
+        return then;
     }
 
     @Override
