@@ -28,7 +28,7 @@
 
     <scm>
         <connection>scm:git:git://github.com/parisk85/JARE.git</connection>
-        <developerConnection>scm:git:ssh://github.com/parisk85/JARE.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/parisk85/JARE.git</developerConnection>
         <url>http://github.com/parisk85/JARE</url>
       <tag>JARE-1.0.1</tag>
   </scm>
