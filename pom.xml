@@ -4,7 +4,7 @@
 
     <groupId>com.github.parisk85</groupId>
     <artifactId>JARE</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <name>JARE</name>
     <description>Just Another Rules Engine</description>
