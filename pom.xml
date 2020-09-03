@@ -6,6 +6,7 @@
     <groupId>com.github.parisk85</groupId>
     <artifactId>JARE</artifactId>
     <version>1.0.0</version>
+    <packaging>jar</packaging>
 
     <name>JARE</name>
     <description>Just Another Rules Engine</description>
