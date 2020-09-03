@@ -12,6 +12,28 @@
     <description>Just Another Rules Engine</description>
     <url>http://github.com/parisk85/JARE</url>
 
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Paraskevas Karagiannopoulos</name>
+            <email>parisk85@gmail.com</email>
+            <organization>com.github.parisk85</organization>
+            <organizationUrl>http://github.com/parisk85</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/parisk85/JARE.git</connection>
+        <developerConnection>scm:git:ssh://github.com:parisk85/JARE.git</developerConnection>
+        <url>http://github.com/parisk85/JARE</url>
+    </scm>
+
     <properties>
         <maven.compiler.target>14</maven.compiler.target>
         <maven.compiler.source>14</maven.compiler.source>
