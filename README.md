@@ -1,7 +1,7 @@
 ***
 ### JARE
 ###### Just Another Rules Engine
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.parisk85/JARE/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.parisk85/JARE/)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.parisk85/JARE.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.parisk85%22%20AND%20a:%22JARE%22)
 [![javadoc](https://javadoc.io/badge2/com.github.parisk85/JARE/javadoc.svg)](https://javadoc.io/doc/com.github.parisk85/JARE)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 ***
