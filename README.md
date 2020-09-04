@@ -17,21 +17,23 @@ JARE is just another rules engine! It is minimalistic library to provide a rules
 Provide the class to the given method and feed the rule when you run it:
 
 ```java
-RuleBuilder.given(String.class)
-        .then(s -> System.out.println("Hello " + s))
-        .run("JARE"); 
+Rule rule = RuleBuilder.given(String.class)
+        .then(s -> System.out.println("Hello " + s));
+
+rule.run("JARE");
 ```
 
 With a when clause:
 
 ```java
-RuleBuilder.given(String.class)
+Rule rule = RuleBuilder.given(String.class)
     .when(s -> "JARE".equals(s))
-    .then(s -> System.out.println("Hello " + s))
-    .run("JARE");
+    .then(s -> System.out.println("Hello " + s));
+    
+rule.run("JARE");
 ```
 
-Another example:
+We can also run in the same statement:
 
 ```java
 StringBuilder test = new StringBuilder();
